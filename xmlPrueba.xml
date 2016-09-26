@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<location>
+<type>INTLCITY</type>
+<country>MdddX</country>
+<country_iso3166>dddd</country_iso3166>
+<country_name>Mexiddco</country_name>
+<state/>
+<city>Cuernavacaddd</city>
+<tz_short>CDTdd</tz_short>
+<tz_long>Amerdddica/Mexico_City</tz_long>
+<lat>0.921876</lat>
+<lon>-9.210663</lon>
+<zip>00000</zip>
+
+<nearby_weather_stations>
+<airport>
+<station>
+<city>Cuernavaca, Mor.</city>
+<state/>
+<country>Mexico</country>
+<icao>MMCB</icao>
+<lat>18.83395958</lat>
+<lon>-99.26199341</lon>
+</station>
+<station>
+<city>Cuernavaca</city>
+<state/>
+<country>MX</country>
+<icao>MMCB</icao>
+<lat>18.83395958</lat>
+<lon>-99.26199341</lon>
+</station>
+</airport>
+<pws>
+<station>
+<neighborhood>Ignacio Comonfort</neighborhood>
+<city>Cuernavaca</city>
+<state/>
+<country>MX</country>
+<id>ICUERNAV3</id>
+<lat>18.912649</lat>
+<lon>-99.222191</lon>
+<distance_km>1</distance_km>
+<distance_mi>0</distance_mi>
+</station>
+<station>
+<neighborhood>Cuernavaca</neighborhood>
+<city>Col. Lomas de Cortes</city>
+<state>MORELOS</state>
+<country>MX</country>
+<id>IJALISCO14</id>
+<lat>18.951502</lat>
+<lon>-99.222740</lon>
+<distance_km>3</distance_km>
+<distance_mi>2</distance_mi>
+</station>
+<station>
+<neighborhood>Colonia Universidad, Cuernavaca</neighborhood>
+<city>Cuernavaca</city>
+<state>MORELOS</state>
+<country>MX</country>
+<id>IMORELOS8</id>
+<lat>18.978054</lat>
+<lon>-99.242630</lon>
+<distance_km>7</distance_km>
+<distance_mi>4</distance_mi>
+</station>
+<station>
+<neighborhood>Temixco Morelos</neighborhood>
+<city>Temixco</city>
+<state>Morelos</state>
+<country>MX</country>
+<id>IJALISCO19</id>
+<lat>18.838669</lat>
+<lon>-99.233902</lon>
+<distance_km>9</distance_km>
+<distance_mi>5</distance_mi>
+</station>
+<station>
+<neighborhood>Santa Cruz</neighborhood>
+<city>TepoztlÃ¡n</city>
+<state/>
+<country>MX</country>
+<id>ITEPOZTL2</id>
+<lat>18.991011</lat>
+<lon>-99.105759</lon>
+<distance_km>13</distance_km>
+<distance_mi>8</distance_mi>
+</station>
+<station>
+<neighborhood>Observatorio astronÃ³mico Urania</neighborhood>
+<city>Tlaquiltenango</city>
+<state>MORELOS</state>
+<country>MX</country>
+<id>IMORELOS6</id>
+<lat>18.625496</lat>
+<lon>-99.168419</lon>
+<distance_km>33</distance_km>
+<distance_mi>19</distance_mi>
+</station>
+<station>
+<neighborhood>Observatorio astronomico Urania</neighborhood>
+<city>Tlaquiltenango</city>
+<state>MORELOS</state>
+<country>MX</country>
+<id>IMORELOS7</id>
+<lat>18.625496</lat>
+<lon>-99.168419</lon>
+<distance_km>33</distance_km>
+<distance_mi>19</distance_mi>
+</station>
+<station>
+<neighborhood>Santiago Tepalcatlalpan</neighborhood>
+<city>Mexico City</city>
+<state/>
+<country>MX</country>
+<id>IMEXICOC18</id>
+<lat>19.246731</lat>
+<lon>-99.122139</lon>
+<distance_km>37</distance_km>
+<distance_mi>22</distance_mi>
+</station>
+</pws>
+</nearby_weather_stations>
+</location>
