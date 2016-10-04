@@ -7,8 +7,8 @@ package com.geolookup.beans;
 
 public class Station {
 
-    private float latitude;
-    private float longitude;
+    private Double latitude;
+    private Double longitude;
     private float elevation_m;
     private String station_id;
     private String state;
@@ -18,19 +18,19 @@ public class Station {
     private float distance_km;
     private float distance_mi;
 
-    public float getLatitude() {
+    public Double getLatitude() {
         return latitude;
     }
 
-    public void setLatitude(float latitude) {
+    public void setLatitude(Double latitude) {
         this.latitude = latitude;
     }
 
-    public float getLongitude() {
+    public Double getLongitude() {
         return longitude;
     }
 
-    public void setLongitude(float longitude) {
+    public void setLongitude(Double longitude) {
         this.longitude = longitude;
     }
 
@@ -103,5 +103,4 @@ public class Station {
         return "Station{" + "latitude=" + latitude + ", longitude=" + longitude + ", elevation_m=" + elevation_m + ", station_id=" + station_id + ", state=" + state + ", city=" + city + ", country=" + country + ", neighborhood=" + neighborhood + ", distance_km=" + distance_km + ", distance_mi=" + distance_mi + '}';
     }
 
-   
 }

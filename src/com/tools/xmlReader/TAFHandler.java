@@ -41,10 +41,10 @@ public class TAFHandler extends DefaultHandler {
                 station.setStation_id(buffer.toString());
                 break;
             case "latitude":
-                station.setLatitude(Float.parseFloat(buffer.toString()));
+                station.setLatitude(Double.parseDouble(buffer.toString()));
                 break;
             case "longitude":
-                station.setLongitude(Float.parseFloat(buffer.toString()));
+                station.setLongitude(Double.parseDouble(buffer.toString()));
                 taf.setStation(station);
                 break;
             case "elevation_m":
@@ -151,16 +151,6 @@ public class TAFHandler extends DefaultHandler {
                 buffer.delete(0, buffer.length());
                 break;
         }
-    }
-
-    @Override
-    public void endDocument() throws SAXException {
-
-    }
-
-    @Override
-    public void startDocument() throws SAXException {
-
     }
 
     public List<TAF> getTafList() {

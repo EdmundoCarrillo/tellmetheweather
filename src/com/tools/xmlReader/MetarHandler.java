@@ -16,12 +16,12 @@ import org.xml.sax.helpers.DefaultHandler;
 
 public class MetarHandler extends DefaultHandler {
 
-    private List<Metar> metarList = new ArrayList();
     private final List<SkyCondition> skyConditionList = new ArrayList();
     private final StringBuilder buffer = new StringBuilder();
-    private Metar metar;
-    private Station station;
+    private List<Metar> metarList = new ArrayList();
     private SkyCondition skyCondition;
+    private Station station;
+    private Metar metar;
 
     @Override
     public void characters(char[] ch, int start, int length) throws SAXException {
@@ -40,11 +40,11 @@ public class MetarHandler extends DefaultHandler {
 //                metar.setStation(station);
                 break;
             case "latitude":
-                station.setLatitude(Float.parseFloat(buffer.toString()));
+                station.setLatitude(Double.parseDouble(buffer.toString()));
 //                metar.setStation(station);
                 break;
             case "longitude":
-                station.setLongitude(Float.parseFloat(buffer.toString()));
+                station.setLongitude(Double.parseDouble(buffer.toString()));
                 metar.setStation(station);
                 break;
             case "elevation_m":
@@ -110,12 +110,11 @@ public class MetarHandler extends DefaultHandler {
                 buffer.delete(0, buffer.length());
                 break;
             case "sky_condition":
-                
+
 //         Debido a que este elemento (sky_condition) guarda su valores en forma de atributos 
 //        (<sky_condition sky_cover="FEW" cloud_base_ft_agl="12000"/>) puede darse el caso que alguno no 
 //         exista para el reporte consultado por eso se necesita verificar para no generar una excepción 
 //         de tipo NumberFormatException: null.
-
                 skyCondition = new SkyCondition();
                 if (attributes.getValue("sky_cover") == null) {
                     skyCondition.setSky_cover("-");
@@ -136,18 +135,6 @@ public class MetarHandler extends DefaultHandler {
                 buffer.delete(0, buffer.length());
                 break;
         }
-    }
-
-    @Override
-    public void endDocument() throws SAXException {
-        // System.out.println("\n End parsing document...");
-
-    }
-
-    @Override
-    public void startDocument() throws SAXException {
-        // System.out.println("\n begin parsing document...");
-
     }
 
     public List<Metar> getMetarList() {

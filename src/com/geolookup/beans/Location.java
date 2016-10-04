@@ -12,6 +12,7 @@ public class Location {
     private float latitude;
     private String state;
     private String city;
+    private String country;
     private String country_name;
     private String country_iso3166;
     private String zip;
@@ -98,17 +99,17 @@ public class Location {
         this.tz_long = tz_long;
     }
 
-//    @Override
-//    public String toString() {
-//        return "Location{" + "nearby_weather_stations=" + nearby_weather_stations + ", longitude=" + longitude + ", latitude=" + latitude + ", state=" + state + ", city=" + city + ", country_name=" + country_name + ", country_iso3166=" + country_iso3166 + ", zip=" + zip + ", tz_short=" + tz_short + ", tz_long=" + tz_long + '}';
-//    }
-//   
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
 
     @Override
     public String toString() {
-        return "Location{" + "longitude=" + longitude + ", latitude=" + latitude + ", state=" + state + ", city=" + city + ", country_name=" + country_name + ", country_iso3166=" + country_iso3166 + ", zip=" + zip + ", tz_short=" + tz_short + ", tz_long=" + tz_long + '}';
+        return "Location{" + "nearby_weather_stations=" + nearby_weather_stations + ", longitude=" + longitude + ", latitude=" + latitude + ", state=" + state + ", city=" + city + ", country=" + country + ", country_name=" + country_name + ", country_iso3166=" + country_iso3166 + ", zip=" + zip + ", tz_short=" + tz_short + ", tz_long=" + tz_long + '}';
     }
-
-    
 
 }

@@ -6,6 +6,7 @@
 package com.tools.xmlReader;
 
 import com.geolookup.beans.*;
+import com.tools.geography.GeographicDistance;
 import java.util.ArrayList;
 import java.util.List;
 import org.xml.sax.Attributes;
@@ -14,6 +15,7 @@ import org.xml.sax.helpers.DefaultHandler;
 
 public class GeolookupHandler extends DefaultHandler {
 
+    private final GeographicDistance geoDistance = new GeographicDistance();
     private final StringBuilder buffer = new StringBuilder();
     private final List<Station> airportList = new ArrayList();
     private final List<Station> pwsList = new ArrayList();
@@ -25,8 +27,8 @@ public class GeolookupHandler extends DefaultHandler {
 
     //Para manejar los elementos iguales en diferentes clases.
     private boolean bAirport = false;
-    private boolean bPws = false;
     private boolean bStation = false;
+    private boolean bPws = false;
 
     @Override
     public void characters(char[] ch, int start, int length) throws SAXException {
@@ -53,22 +55,25 @@ public class GeolookupHandler extends DefaultHandler {
                 break;
             case "station":
                 bStation = false;
+                station.setDistance_km((float) geoDistance.measureDistanceKm(station.getLatitude(), station.getLongitude(), location.getLatitude(), location.getLongitude()));
+                station.setDistance_mi((float) geoDistance.measureDistanceMi(station.getLatitude(), station.getLongitude(), location.getLatitude(), location.getLongitude()));
                 if (bAirport) {
                     airportList.add(station);
+
                 } else if (bPws) {
                     pwsList.add(station);
                 }
                 break;
             case "lon":
                 if (bStation) {
-                    station.setLongitude(Float.parseFloat(buffer.toString()));
+                    station.setLongitude(Double.parseDouble(buffer.toString()));
                 } else {
                     location.setLongitude(Float.parseFloat(buffer.toString()));
                 }
                 break;
             case "lat":
                 if (bStation) {
-                    station.setLatitude(Float.parseFloat(buffer.toString()));
+                    station.setLatitude(Double.parseDouble(buffer.toString()));
                 } else {
                     location.setLatitude(Float.parseFloat(buffer.toString()));
                 }
@@ -112,19 +117,19 @@ public class GeolookupHandler extends DefaultHandler {
                 if (bStation) {
                     station.setCountry(buffer.toString());
                 } else {
-                    //location.set(buffer.toString());
+                    location.setCountry(buffer.toString());
                 }
 
                 break;
             case "neighborhood":
                 station.setNeighborhood(buffer.toString());
                 break;
-            case "distance_km":
-                station.setDistance_km(Float.parseFloat(buffer.toString()));
-                break;
-            case "distance_mi":
-                station.setDistance_mi(Float.parseFloat(buffer.toString()));
-                break;
+//            case "distance_km":
+//                station.setDistance_km(Float.parseFloat(buffer.toString()));
+//                break;
+//            case "distance_mi":
+//                station.setDistance_mi(Float.parseFloat(buffer.toString()));
+//                break;
         }
 
     }
@@ -132,7 +137,7 @@ public class GeolookupHandler extends DefaultHandler {
     @Override
     public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
         switch (qName) {
-            //------------  Location --------------------------
+
             case "location":
                 location = new Location();
 
@@ -152,25 +157,20 @@ public class GeolookupHandler extends DefaultHandler {
                 break;
 
             case "lon":
-                buffer.delete(0, buffer.length());
-                break;
             case "lat":
-
-                buffer.delete(0, buffer.length());
-                break;
             case "state":
-
-                buffer.delete(0, buffer.length());
-                break;
             case "city":
-
-                buffer.delete(0, buffer.length());
-                break;
+            case "country":
             case "country_name":
             case "country_iso3166":
             case "zip":
             case "tz_short":
             case "tz_long":
+            case "neighborhood":
+//            case "distance_km":
+//            case "distance_mi":
+            case "icao":
+            case "id":
                 buffer.delete(0, buffer.length());
                 break;
 
@@ -179,22 +179,10 @@ public class GeolookupHandler extends DefaultHandler {
                 bStation = true;
                 buffer.delete(0, buffer.length());
                 break;
-
-            case "neighborhood":
-            case "distance_km":
-            case "distance_mi":
-            case "icao":
-            case "id":
-                buffer.delete(0, buffer.length());
-                break;
         }
 
     }
-
-    @Override
-    public void endDocument() throws SAXException {
-    }
-
+    
     public Location getLocation() {
         return location;
     }

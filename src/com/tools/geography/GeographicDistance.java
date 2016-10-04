@@ -37,7 +37,7 @@ public class GeographicDistance {
 
 //    public static void main(String[] args) {
 //        GeographicDistance geo = new GeographicDistance();
-//        System.out.println(geo.measureDistanceKm(18.92187618976372, -99.21066284179688, 18.920000, -99.191017));
-//        System.out.println(geo.measureDistanceMi(18.92187618976372, -99.21066284179688, 18.920000, -99.191017));
+//        System.out.println(geo.measureDistanceKm(19.43000031, -99.09999847, 19.436111, -99.071944));
+//        System.out.println(geo.measureDistanceMi(18.92187618976372, -99.21066284179688, 18.91265, -99.22219));
 //    }
 }
