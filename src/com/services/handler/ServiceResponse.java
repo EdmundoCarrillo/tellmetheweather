@@ -10,9 +10,13 @@ import com.stationReports.beans.Metar;
 import com.stationReports.beans.TAF;
 import com.tools.Url.DataSource;
 import com.tools.Url.URLCreator;
+import com.tools.xmlReader.BestForecastHandler;
 import com.tools.xmlReader.GeolookupHandler;
 import com.tools.xmlReader.MetarHandler;
+import com.tools.xmlReader.ObservationHandler;
 import com.tools.xmlReader.TAFHandler;
+import com.weatherConditions.beans.BestForecast;
+import com.weatherConditions.beans.CurrentObservation;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.List;
@@ -55,5 +59,23 @@ public class ServiceResponse {
         xmlReader.setContentHandler(tafHandler);
         xmlReader.parse(new InputSource(urlCreator.getMostRecentAirportReport(idStation, DataSource.TAF).openStream()));
         return tafHandler.getTafList();
+    }
+
+    public CurrentObservation getPwsConditions(String idStation) throws SAXException, IOException {
+        xmlReader = XMLReaderFactory.createXMLReader();
+        ObservationHandler obHandler = new ObservationHandler();
+        urlCreator = new URLCreator();
+        xmlReader.setContentHandler(obHandler);
+        xmlReader.parse(new InputSource(urlCreator.getMostRecentPwsReport(idStation, DataSource.BFCONDITIONS).openStream()));
+        return obHandler.getCurrentObservation();
+    }
+
+    public BestForecast getPwsForecast(String idStation) throws SAXException, IOException {
+        xmlReader = XMLReaderFactory.createXMLReader();
+        BestForecastHandler bfHandler = new BestForecastHandler();
+        urlCreator = new URLCreator();
+        xmlReader.setContentHandler(bfHandler);
+        xmlReader.parse(new InputSource(urlCreator.getMostRecentPwsReport(idStation, DataSource.BFORECAST).openStream()));
+        return bfHandler.getBestForecast();
     }
 }

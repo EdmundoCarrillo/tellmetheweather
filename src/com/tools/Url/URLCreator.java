@@ -14,7 +14,7 @@ public class URLCreator {
     private final String HOURS_BEFORE_NOW = "3";
     private final String MOST_RECENT = "true";
     private final String FORMAT = "xml";
-    private DataSource DATA_SOURCE;
+//    private DataSource DATA_SOURCE;
 
     public URLCreator() {
     }
@@ -33,11 +33,18 @@ public class URLCreator {
         return new URL("http://api.wunderground.com/api/"
                 + "" + DataSource.ACCESSKEY + "/"
                 + "geolookup/q/"
-                + "" + latitude + "," + longitude + ".xml");
+                + "" + latitude + "," + longitude + "."+FORMAT+"");
     }
 
-//    public static void main(String[] args) throws MalformedURLException {
-//        URL url = new URLCreator().getSurroundingStations(4464.169854, -15.1699818);
-//        System.out.println(url.toString());
-//    }
+    public URL getMostRecentPwsReport(String STATION_STRING, DataSource DATA_SOURCE) throws MalformedURLException {
+        return new URL("http://api.wunderground.com/api/" + DataSource.ACCESSKEY + "/" + DATA_SOURCE 
+                + "/" + DataSource.LANGUAGE + "/q/pws:" + STATION_STRING + "."+FORMAT+"");
+    }
+
+    public static void main(String[] args) throws MalformedURLException {
+        URL url = new URLCreator().getSurroundingStations(4464.169854, -15.1699818);
+        URL url2 = new URLCreator().getMostRecentPwsReport("ICUERNAV3",DataSource.BFCONDITIONS);
+        System.out.println(url.toString());
+        System.out.println(url2.toString());
+    }
 }

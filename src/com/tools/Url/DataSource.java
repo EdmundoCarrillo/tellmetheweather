@@ -23,6 +23,26 @@ public enum DataSource {
         public String toString() {
             return "5b6df701c02c630d";
         }
+    },
+    BFCONDITIONS {
+        @Override
+        public String toString() {
+            return "conditions";
+        }
+    },
+    BFORECAST {
+        @Override
+        public String toString() {
+            return "forecast";
+        }
 
-    };
+    },
+    LANGUAGE {
+        @Override
+        public String toString() {
+            return "lang:SP";
+        };
+
+    }
+
 }

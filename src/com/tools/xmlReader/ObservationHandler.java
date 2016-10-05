@@ -113,6 +113,9 @@ public class ObservationHandler extends DefaultHandler {
             case "icon_url":
                 currentObservation.setIcon_url(buffer.toString());
                 break;
+//            case "heat_index_f":
+//                currentObservation.setHeat_index_f(Float.parseFloat(buffer.toString()));
+//                break;
 
         }
 
@@ -153,6 +156,7 @@ public class ObservationHandler extends DefaultHandler {
             case "precip_today_string":
             case "icon":
             case "icon_url":
+//            case "heat_index_f":
                 buffer.delete(0, buffer.length());
                 break;
 

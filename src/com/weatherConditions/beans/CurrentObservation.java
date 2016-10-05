@@ -31,9 +31,9 @@ public class CurrentObservation {
     private Float dewpoint_c;
     private Float dewpoint_f;
 
-    private String heat_index_string;
-    private Float heat_index_f;
-    private Float heat_index_c;
+//    private String heat_index_string;
+//    private Float heat_index_f;
+//    private Float heat_index_c;
 
     private String feelslike_string;
     private Float feelslike_f;
@@ -199,29 +199,29 @@ public class CurrentObservation {
         this.dewpoint_f = dewpoint_f;
     }
 
-    public String getHeat_index_string() {
-        return heat_index_string;
-    }
-
-    public void setHeat_index_string(String heat_index_string) {
-        this.heat_index_string = heat_index_string;
-    }
-
-    public Float getHeat_index_f() {
-        return heat_index_f;
-    }
-
-    public void setHeat_index_f(Float heat_index_f) {
-        this.heat_index_f = heat_index_f;
-    }
-
-    public Float getHeat_index_c() {
-        return heat_index_c;
-    }
-
-    public void setHeat_index_c(Float heat_index_c) {
-        this.heat_index_c = heat_index_c;
-    }
+//    public String getHeat_index_string() {
+//        return heat_index_string;
+//    }
+//
+//    public void setHeat_index_string(String heat_index_string) {
+//        this.heat_index_string = heat_index_string;
+//    }
+//
+//    public Float getHeat_index_f() {
+//        return heat_index_f;
+//    }
+//
+//    public void setHeat_index_f(Float heat_index_f) {
+//        this.heat_index_f = heat_index_f;
+//    }
+//
+//    public Float getHeat_index_c() {
+//        return heat_index_c;
+//    }
+//
+//    public void setHeat_index_c(Float heat_index_c) {
+//        this.heat_index_c = heat_index_c;
+//    }
 
     public String getFeelslike_string() {
         return feelslike_string;
@@ -289,18 +289,18 @@ public class CurrentObservation {
 
     @Override
     public String toString() {
-        return "CurrentObservation{" + "observation_time=" + observation_time + ", observation_time_rfc822="
-                + observation_time_rfc822 + ", weather=" + weather + ", temperature_string=" + temperature_string
-                + ", temp_f=" + temp_f + ", temp_c=" + temp_c + ", relative_humidity=" + relative_humidity
-                + ", wind_string=" + wind_string + ", wind_dir=" + wind_dir + ", wind_degrees=" + wind_degrees
-                + ", wind_mph=" + wind_mph + ", wind_kph=" + wind_kph + ", wind_gust_mph=" + wind_gust_mph
-                + ", wind_gust_kph=" + wind_gust_kph + ", pressure_in=" + pressure_in + ", pressure_mb="
-                + pressure_mb + ", dewpoint_string=" + dewpoint_string + ", dewpoint_c=" + dewpoint_c
-                + ", dewpoint_f=" + dewpoint_f + ", heat_index_string=" + heat_index_string + ", heat_index_f="
-                + heat_index_f + ", heat_index_c=" + heat_index_c + ", feelslike_string=" + feelslike_string
-                + ", feelslike_f=" + feelslike_f + ", feelslike_c=" + feelslike_c + ", visibility_mi="
-                + visibility_mi + ", visibility_km=" + visibility_km + ", precip_today_string=" + precip_today_string
-                + ", icon_url=" + icon_url + ", icon=" + icon + '}';
+        return "CurrentObservation{" + "observation_time=" + observation_time + ", observation_time_rfc822=" + 
+                observation_time_rfc822 + ", weather=" + weather + ", temperature_string=" + temperature_string + 
+                ", temp_f=" + temp_f + ", temp_c=" + temp_c + ", relative_humidity=" + relative_humidity + 
+                ", wind_string=" + wind_string + ", wind_dir=" + wind_dir + ", wind_degrees=" + wind_degrees +
+                ", wind_mph=" + wind_mph + ", wind_kph=" + wind_kph + ", wind_gust_mph=" + wind_gust_mph +
+                ", wind_gust_kph=" + wind_gust_kph + ", pressure_in=" + pressure_in + ", pressure_mb=" + pressure_mb + 
+                ", dewpoint_string=" + dewpoint_string + ", dewpoint_c=" + dewpoint_c + ", dewpoint_f=" + dewpoint_f + 
+                ", feelslike_string=" + feelslike_string + ", feelslike_f=" + feelslike_f + ", feelslike_c=" + feelslike_c +
+                ", visibility_mi=" + visibility_mi + ", visibility_km=" + visibility_km + ", precip_today_string=" + 
+                precip_today_string + ", icon_url=" + icon_url + ", icon=" + icon + '}';
     }
+
+
 
 }
