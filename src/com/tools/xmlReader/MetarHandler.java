@@ -22,6 +22,7 @@ public class MetarHandler extends DefaultHandler {
     private SkyCondition skyCondition;
     private Station station;
     private Metar metar;
+    private int noResultados;
 
     @Override
     public void characters(char[] ch, int start, int length) throws SAXException {
@@ -86,8 +87,10 @@ public class MetarHandler extends DefaultHandler {
     public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
 
         switch (qName) {
-            case "METAR":
+            case "response":
                 metar = new Metar();
+                break;
+            case "METAR":
                 metarList.add(metar);
                 break;
             case "station_id":
@@ -117,7 +120,7 @@ public class MetarHandler extends DefaultHandler {
 //         de tipo NumberFormatException: null.
                 skyCondition = new SkyCondition();
                 if (attributes.getValue("sky_cover") == null) {
-                    skyCondition.setSky_cover("-");
+                    skyCondition.setSky_cover("No disponible");
 
                 } else {
                     skyCondition.setSky_cover(attributes.getValue("sky_cover"));
@@ -134,6 +137,17 @@ public class MetarHandler extends DefaultHandler {
                 metar.setSkyConditionList(skyConditionList);
                 buffer.delete(0, buffer.length());
                 break;
+            case "data":
+                noResultados = Integer.parseInt(attributes.getValue("num_results"));
+                metar.setNum_result(noResultados);
+
+//                metar = new Metar();
+//                metarList.add(metar);
+//                if (num_result == 0) {
+//
+//                }
+                break;
+
         }
     }
 

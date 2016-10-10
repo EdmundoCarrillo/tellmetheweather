@@ -21,6 +21,7 @@ public class Metar {
     private double altimeter_in_hg;
     private double sea_level_pressure_mb;
     private String wx_string;
+    private Integer num_result;
     private List<SkyCondition> skyConditionList;
 
     public String getRaw_text() {
@@ -119,9 +120,17 @@ public class Metar {
         this.skyConditionList = skyConditionList;
     }
 
+    public Integer getNum_result() {
+        return num_result;
+    }
+
+    public void setNum_result(Integer num_result) {
+        this.num_result = num_result;
+    }
+
     @Override
     public String toString() {
-        return "Metar{" + "raw_text=" + raw_text + ", station=" + station + ", observation_time=" + observation_time + ", temperature_c=" + temperature_c + ", dewpoint=" + dewpoint + ", wind_dir_degrees=" + wind_dir_degrees + ", wind_speed_kt=" + wind_speed_kt + ", visibility_mi=" + visibility_mi + ", altimeter_in_hg=" + altimeter_in_hg + ", sea_level_pressure_mb=" + sea_level_pressure_mb + ", wx_string=" + wx_string + ", skyConditionList=" + skyConditionList + '}';
+        return "Metar{" + "raw_text=" + raw_text + ", station=" + station + ", observation_time=" + observation_time + ", temperature_c=" + temperature_c + ", dewpoint=" + dewpoint + ", wind_dir_degrees=" + wind_dir_degrees + ", wind_speed_kt=" + wind_speed_kt + ", visibility_mi=" + visibility_mi + ", altimeter_in_hg=" + altimeter_in_hg + ", sea_level_pressure_mb=" + sea_level_pressure_mb + ", wx_string=" + wx_string + ", num_result=" + num_result + ", skyConditionList=" + skyConditionList + '}';
     }
 
 }

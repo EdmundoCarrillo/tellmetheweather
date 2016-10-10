@@ -14,7 +14,7 @@ import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
 public class GeolookupHandler extends DefaultHandler {
-
+    
     private final GeographicDistance geoDistance = new GeographicDistance();
     private final StringBuilder buffer = new StringBuilder();
     private final List<Station> airportList = new ArrayList();
@@ -29,14 +29,34 @@ public class GeolookupHandler extends DefaultHandler {
     private boolean bAirport = false;
     private boolean bStation = false;
     private boolean bPws = false;
-
+    
     @Override
     public void characters(char[] ch, int start, int length) throws SAXException {
         buffer.append(ch, start, length);
     }
-
+    
     @Override
     public void endElement(String uri, String localName, String qName) throws SAXException {
+        /*    
+        Caso de error: EL servicio geolookup del BestForecast devuelve un xml con estaciones vacías.
+        Tipo de error: java.lang.NumberFormatException: empty String
+        Causa: No se puede realizar la conversión de una cadena vacía a un tipo Float o Double para 
+               setear longitud-latitud y calcular la distancia.
+        Ejemplo:
+                <station>
+                    <city/>
+                    <state/>
+                    <country/>
+                    <icao/>
+                    <lat/>
+                    <lon/>
+                </station>
+         */
+        
+        if (buffer.toString() == null || buffer.toString().isEmpty()) {
+            buffer.delete(0, buffer.length());
+            buffer.append("1000");
+        }
         switch (qName) {
             case "location":
                 location.setNearby_weather_stations(nearbyStations);
@@ -59,7 +79,7 @@ public class GeolookupHandler extends DefaultHandler {
                 station.setDistance_mi((float) geoDistance.measureDistanceMi(station.getLatitude(), station.getLongitude(), location.getLatitude(), location.getLongitude()));
                 if (bAirport) {
                     airportList.add(station);
-
+                    
                 } else if (bPws) {
                     pwsList.add(station);
                 }
@@ -119,10 +139,16 @@ public class GeolookupHandler extends DefaultHandler {
                 } else {
                     location.setCountry(buffer.toString());
                 }
-
+                
                 break;
             case "neighborhood":
                 station.setNeighborhood(buffer.toString());
+                break;
+            case "error":
+                location.setQueryError(true);
+                break;
+            case "description":
+                location.setErrorDescription(buffer.toString());
                 break;
 //            case "distance_km":
 //                station.setDistance_km(Float.parseFloat(buffer.toString()));
@@ -131,31 +157,31 @@ public class GeolookupHandler extends DefaultHandler {
 //                station.setDistance_mi(Float.parseFloat(buffer.toString()));
 //                break;
         }
-
+        
     }
-
+    
     @Override
     public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
         switch (qName) {
-
+            
             case "location":
                 location = new Location();
-
+                
                 break;
             case "nearby_weather_stations":
                 nearbyStations = new NearbyStations();
-
+                
                 break;
             case "airport":
                 airport = new Airport();
                 bAirport = true;
-
+                
                 break;
             case "pws":
                 pws = new Pws();
                 bPws = true;
                 break;
-
+            
             case "lon":
             case "lat":
             case "state":
@@ -171,24 +197,30 @@ public class GeolookupHandler extends DefaultHandler {
 //            case "distance_mi":
             case "icao":
             case "id":
+            case "description":
                 buffer.delete(0, buffer.length());
                 break;
-
+            
             case "station":
                 station = new Station();
                 bStation = true;
                 buffer.delete(0, buffer.length());
                 break;
+            case "error":
+                location = new Location();
+                buffer.delete(0, buffer.length());
+                break;
+            
         }
-
+        
     }
     
     public Location getLocation() {
         return location;
     }
-
+    
     public void setLocation(Location location) {
         this.location = location;
     }
-
+    
 }

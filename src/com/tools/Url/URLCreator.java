@@ -41,10 +41,12 @@ public class URLCreator {
                 + "/" + DataSource.LANGUAGE + "/q/pws:" + STATION_STRING + "."+FORMAT+"");
     }
 
-    public static void main(String[] args) throws MalformedURLException {
-        URL url = new URLCreator().getSurroundingStations(4464.169854, -15.1699818);
-        URL url2 = new URLCreator().getMostRecentPwsReport("ICUERNAV3",DataSource.BFCONDITIONS);
-        System.out.println(url.toString());
-        System.out.println(url2.toString());
-    }
+//    public static void main(String[] args) throws MalformedURLException {
+//        URL url = new URLCreator().getSurroundingStations(4464.169854, -15.1699818);
+//        URL url2 = new URLCreator().getMostRecentPwsReport("ICUERNAV3",DataSource.BFCONDITIONS);
+//        URL url3 = new URLCreator().getMostRecentAirportReport("MMAN", DataSource.METAR);
+//        System.out.println(url.toString());
+//        System.out.println(url2.toString());
+//        System.out.println(url3.toString());
+//    }
 }

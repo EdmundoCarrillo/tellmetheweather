@@ -18,6 +18,8 @@ public class Location {
     private String zip;
     private String tz_short;
     private String tz_long;
+    private boolean queryError;
+    private String errorDescription;
 
     public NearbyStations getNearby_weather_stations() {
         return nearby_weather_stations;
@@ -110,6 +112,22 @@ public class Location {
     @Override
     public String toString() {
         return "Location{" + "nearby_weather_stations=" + nearby_weather_stations + ", longitude=" + longitude + ", latitude=" + latitude + ", state=" + state + ", city=" + city + ", country=" + country + ", country_name=" + country_name + ", country_iso3166=" + country_iso3166 + ", zip=" + zip + ", tz_short=" + tz_short + ", tz_long=" + tz_long + '}';
+    }
+
+    public String getErrorDescription() {
+        return errorDescription;
+    }
+
+    public void setErrorDescription(String errorDescription) {
+        this.errorDescription = errorDescription;
+    }
+
+    public boolean isQueryError() {
+        return queryError;
+    }
+
+    public void setQueryError(boolean queryError) {
+        this.queryError = queryError;
     }
 
 }
