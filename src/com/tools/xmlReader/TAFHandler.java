@@ -9,6 +9,7 @@ import com.geolookup.beans.Station;
 import com.stationReports.beans.SkyCondition;
 import com.stationReports.beans.TAForecast;
 import com.stationReports.beans.TAF;
+import com.stationReports.beans.WxSymbol;
 import java.util.ArrayList;
 import java.util.List;
 import org.xml.sax.Attributes;
@@ -79,6 +80,8 @@ public class TAFHandler extends DefaultHandler {
                 break;
             case "wx_string":
                 taForecast.setWx_string(buffer.toString());
+                WxSymbol wx = new WxSymbol(buffer.toString());
+                wx.fillWxSymbol(taForecast);
                 break;
 
             case "altim_in_hg":
@@ -91,6 +94,7 @@ public class TAFHandler extends DefaultHandler {
                 taForecast.setMin_temp_c(Float.parseFloat(buffer.toString()));
                 break;
             case "forecast":
+                setMissingFields(taForecast);
                 taForecastList.add(taForecast);
                 taf.setTforecastList(taForecastList);
                 break;
@@ -150,6 +154,14 @@ public class TAFHandler extends DefaultHandler {
                 taForecast.setSkyConditionList(skyConditionList);
                 buffer.delete(0, buffer.length());
                 break;
+        }
+    }
+
+    public void setMissingFields(TAForecast taf) {
+        if (taf.getWxSymbolList() == null) {
+            List<WxSymbol> wxList = new ArrayList();
+            wxList.add(new WxSymbol("NWS", "Sin tiempo de importancia", ""));
+            taf.setWxSymbolList(wxList);
         }
     }
 

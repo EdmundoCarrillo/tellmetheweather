@@ -18,7 +18,7 @@ import org.xml.sax.SAXException;
 public class mainTest1 {
 
     public static void main(String[] args) throws SAXException, IOException {
-        WeatherStationController wsc = new WeatherStationController(25.865556, -100.238056);
+        WeatherStationController wsc = new WeatherStationController(9.436111,-99.071944);
         Weather weather = wsc.weatherCheck();
         Location location = wsc.getLocation();
         Station station = weather.getStationSource();
@@ -37,39 +37,39 @@ public class mainTest1 {
             System.out.println("City: " + location.getCity());
             System.out.println("TimeZone: " + location.getTz_long());
 
-//            NearbyStations nb = location.getNearby_weather_stations();
-//            List<Station> a = nb.getAirport().getStation();
-//            List<Station> b = nb.getPws().getStation();
-//
-//            System.out.println("\nLista de aeropuertos cercanos:");
-//            for (Station st : a) {
-//                System.out.println("Neighborhood:" + st.getNeighborhood());
-//                System.out.println("City:" + st.getCity());
-//                System.out.println("State:" + st.getState());
-//                System.out.println("Country:" + st.getCountry());
-//                System.out.println("Station_id:" + st.getStation_id());
-//                System.out.println("Latitude:" + st.getLatitude());
-//                System.out.println("Longitude:" + st.getLongitude());
-//                System.out.println("Elevation_m:" + st.getElevation_m());
-//                System.out.println("Distance_km:" + st.getDistance_km());
-//                System.out.println("Distance_mi:" + st.getDistance_mi());
-//                System.out.println("\n");
-//            }
-//
-//            System.out.println("\nLista de pws cercanos:");
-//            for (Station st : b) {
-//                System.out.println("Neighborhood:" + st.getNeighborhood());
-//                System.out.println("City:" + st.getCity());
-//                System.out.println("State:" + st.getState());
-//                System.out.println("Country:" + st.getCountry());
-//                System.out.println("Station_id:" + st.getStation_id());
-//                System.out.println("Latitude:" + st.getLatitude());
-//                System.out.println("Longitude:" + st.getLongitude());
-//                System.out.println("Elevation_m:" + st.getElevation_m());
-//                System.out.println("Distance_km:" + st.getDistance_km());
-//                System.out.println("Distance_mi:" + st.getDistance_mi());
-//                System.out.println("\n");
-//            }
+            NearbyStations nb = location.getNearby_weather_stations();
+            List<Station> a = nb.getAirport().getStation();
+            List<Station> b = nb.getPws().getStation();
+
+            System.out.println("\nLista de aeropuertos cercanos:");
+            for (Station st : a) {
+                System.out.println("Neighborhood:" + st.getNeighborhood());
+                System.out.println("City:" + st.getCity());
+                System.out.println("State:" + st.getState());
+                System.out.println("Country:" + st.getCountry());
+                System.out.println("Station_id:" + st.getStation_id());
+                System.out.println("Latitude:" + st.getLatitude());
+                System.out.println("Longitude:" + st.getLongitude());
+                System.out.println("Elevation_m:" + st.getElevation_m());
+                System.out.println("Distance_km:" + st.getDistance_km());
+                System.out.println("Distance_mi:" + st.getDistance_mi());
+                System.out.println("\n");
+            }
+
+            System.out.println("\nLista de pws cercanos:");
+            for (Station st : b) {
+                System.out.println("Neighborhood:" + st.getNeighborhood());
+                System.out.println("City:" + st.getCity());
+                System.out.println("State:" + st.getState());
+                System.out.println("Country:" + st.getCountry());
+                System.out.println("Station_id:" + st.getStation_id());
+                System.out.println("Latitude:" + st.getLatitude());
+                System.out.println("Longitude:" + st.getLongitude());
+                System.out.println("Elevation_m:" + st.getElevation_m());
+                System.out.println("Distance_km:" + st.getDistance_km());
+                System.out.println("Distance_mi:" + st.getDistance_mi());
+                System.out.println("\n");
+            }
             System.out.println("\nESTACIÓN MÁS CERCANA:");
             System.out.println("Station_id: " + station.getStation_id());
             System.out.println("Latitude: " + station.getLatitude());
@@ -97,6 +97,7 @@ public class mainTest1 {
                 System.out.println("Sea_level_pressure_mb: " + weather.getMetar().getSea_level_pressure_mb());
                 System.out.println("Wx_string: " + weather.getMetar().getWx_string());
                 System.out.println("SkyConditionList: " + weather.getMetar().getSkyConditionList().toString());
+                System.out.println("WxSymbolList:" + weather.getMetar().getWxSymbolList().toString());
 
                 System.out.println("\nPRONOSTICO:");
                 System.out.println("Raw_text: " + weather.getTaf().getRaw_text());
@@ -105,6 +106,7 @@ public class mainTest1 {
                 System.out.println("Valid_time_from: " + weather.getTaf().getValid_time_from());
                 System.out.println("Valid_time_to: " + weather.getTaf().getValid_time_to());
                 System.out.println("Pronosticos" + weather.getTaf().getTforecastList().toString());
+                
                 System.out.println("\n");
             } else if (weather.isPwsSource()) {
                 System.out.println("\nTIMEPO ACTUAL:");

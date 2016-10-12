@@ -8,6 +8,8 @@ package com.tools.xmlReader;
 import com.geolookup.beans.Station;
 import com.stationReports.beans.Metar;
 import com.stationReports.beans.SkyCondition;
+import com.stationReports.beans.WxSymbol;
+import com.tellmetheweather.dao.WxSymbolDao;
 import java.util.ArrayList;
 import java.util.List;
 import org.xml.sax.Attributes;
@@ -20,9 +22,9 @@ public class MetarHandler extends DefaultHandler {
     private final StringBuilder buffer = new StringBuilder();
     private List<Metar> metarList = new ArrayList();
     private SkyCondition skyCondition;
+    private int noResultados;
     private Station station;
     private Metar metar;
-    private int noResultados;
 
     @Override
     public void characters(char[] ch, int start, int length) throws SAXException {
@@ -32,7 +34,9 @@ public class MetarHandler extends DefaultHandler {
     @Override
     public void endElement(String uri, String localName, String qName) throws SAXException {
         switch (qName) {
-
+            case "METAR":
+                setMissingFields(metar);
+                break;
             case "raw_text":
                 metar.setRaw_text(buffer.toString());
                 break;
@@ -78,6 +82,8 @@ public class MetarHandler extends DefaultHandler {
                 break;
             case "wx_string":
                 metar.setWx_string(buffer.toString());
+                WxSymbol wx = new WxSymbol(buffer.toString());
+                wx.fillWxSymbol(metar);
                 break;
 
         }
@@ -140,6 +146,8 @@ public class MetarHandler extends DefaultHandler {
             case "data":
                 noResultados = Integer.parseInt(attributes.getValue("num_results"));
                 metar.setNum_result(noResultados);
+                //borrar
+                metarList.add(metar);
 
 //                metar = new Metar();
 //                metarList.add(metar);
@@ -148,6 +156,14 @@ public class MetarHandler extends DefaultHandler {
 //                }
                 break;
 
+        }
+    }
+
+    public void setMissingFields(Metar metar) {
+        if (metar.getWxSymbolList() == null) {
+            List<WxSymbol> wxList = new ArrayList();
+            wxList.add(new WxSymbol("NWS", "Sin tiempo de importancia", ""));
+            metar.setWxSymbolList(wxList);
         }
     }
 

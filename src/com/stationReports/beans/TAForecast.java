@@ -16,9 +16,18 @@ public class TAForecast {
     private float visibility_mi;
     private String wx_string;
     private List<SkyCondition> skyConditionList;
+    private List<WxSymbol> wxSymbolList;
     private double altimeter_in_hg;
     private float max_temp_c;
     private float min_temp_c;
+
+    public List<WxSymbol> getWxSymbolList() {
+        return wxSymbolList;
+    }
+
+    public void setWxSymbolList(List<WxSymbol> wxSymbolList) {
+        this.wxSymbolList = wxSymbolList;
+    }
 
     public String getFcst_time_from() {
         return fcst_time_from;
@@ -102,8 +111,7 @@ public class TAForecast {
 
     @Override
     public String toString() {
-        return "TAForecast{" + "fcst_time_from=" + fcst_time_from + ", fcst_time_to=" + fcst_time_to + ", wind_dir_degrees=" + wind_dir_degrees + ", wind_speed_kt=" + wind_speed_kt + ", visibility_mi=" + visibility_mi + ", wx_string=" + wx_string + ", skyConditionList=" + skyConditionList + ", altimeter_in_hg=" + altimeter_in_hg + ", max_temp_c=" + max_temp_c + ", min_temp_c=" + min_temp_c + '}';
+        return "TAForecast{" + "fcst_time_from=" + fcst_time_from + ", fcst_time_to=" + fcst_time_to + ", wind_dir_degrees=" + wind_dir_degrees + ", wind_speed_kt=" + wind_speed_kt + ", visibility_mi=" + visibility_mi + ", wx_string=" + wx_string + ", skyConditionList=" + skyConditionList + ", wxSymbolList=" + wxSymbolList + ", altimeter_in_hg=" + altimeter_in_hg + ", max_temp_c=" + max_temp_c + ", min_temp_c=" + min_temp_c + '}';
     }
-    
-    
+
 }
