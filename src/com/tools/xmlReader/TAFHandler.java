@@ -138,10 +138,11 @@ public class TAFHandler extends DefaultHandler {
             case "sky_condition":
                 skyCondition = new SkyCondition();
                 if (attributes.getValue("sky_cover") == null) {
-                    skyCondition.setSky_cover("-");
+                    skyCondition.setSky_cover("Condición del cielo no disponible.");
 
                 } else {
                     skyCondition.setSky_cover(attributes.getValue("sky_cover"));
+                    skyCondition.parseSkyConditions();
                 }
                 if (attributes.getValue("cloud_base_ft_agl") == null) {
                     skyCondition.setCloud_base_ft_agl(0);

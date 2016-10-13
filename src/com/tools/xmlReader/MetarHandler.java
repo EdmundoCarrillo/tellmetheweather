@@ -9,7 +9,6 @@ import com.geolookup.beans.Station;
 import com.stationReports.beans.Metar;
 import com.stationReports.beans.SkyCondition;
 import com.stationReports.beans.WxSymbol;
-import com.tellmetheweather.dao.WxSymbolDao;
 import java.util.ArrayList;
 import java.util.List;
 import org.xml.sax.Attributes;
@@ -126,10 +125,11 @@ public class MetarHandler extends DefaultHandler {
 //         de tipo NumberFormatException: null.
                 skyCondition = new SkyCondition();
                 if (attributes.getValue("sky_cover") == null) {
-                    skyCondition.setSky_cover("No disponible");
+                    skyCondition.setSky_cover("Condición del cielo no disponible.");
 
                 } else {
                     skyCondition.setSky_cover(attributes.getValue("sky_cover"));
+                    skyCondition.parseSkyConditions();
                 }
 
                 if (attributes.getValue("cloud_base_ft_agl") == null) {

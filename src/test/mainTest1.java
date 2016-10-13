@@ -18,7 +18,7 @@ import org.xml.sax.SAXException;
 public class mainTest1 {
 
     public static void main(String[] args) throws SAXException, IOException {
-        WeatherStationController wsc = new WeatherStationController(9.436111,-99.071944);
+        WeatherStationController wsc = new WeatherStationController(25.865556,-100.238056 );
         Weather weather = wsc.weatherCheck();
         Location location = wsc.getLocation();
         Station station = weather.getStationSource();
